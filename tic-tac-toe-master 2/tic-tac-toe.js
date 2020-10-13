@@ -3,6 +3,8 @@ window.onload = function(){
 	var tracker = 0;
 	var checkWin = ["","","","","","","","",""];
 	var full=0;
+	var button= document.getElementsByClassName("btn")[0];
+    button.addEventListener("click", clearBoard);
 	for (let i= 0; i<board.length; i++){
 		board[i].classList.add("square");
 		board[i].addEventListener("click",function(){
@@ -10,11 +12,13 @@ window.onload = function(){
 				board[i].innerHTML="X";
 				board[i].classList.add("X");
 				checkWin[i]="X";
+				board[i].style.pointerEvents="none";
 				checkforwin(tracker);
 			}else{
 				board[i].innerHTML="O";
 				board[i].classList.add("O");
 				checkWin[i]="O";
+				board[i].style.pointerEvents="none";
 				checkforwin(tracker);
 			}
 			full++;
@@ -59,8 +63,19 @@ window.onload = function(){
 
 			status.innerHTML="Draw";
 		}
-
 	}
-
-	
+	function clearBoard(){
+		var status= document.getElementById("status");
+		tracker = 0;
+		checkWin = ["","","","","","","","",""];
+		full=0;
+		status.innerHTML="Move your mouse over a square and click to play an X or an O.";
+		status.classList.remove("you-won");
+		for (let i= 0; i<board.length; i++){
+				board[i].innerHTML="";
+				board[i].classList.remove("X");
+				board[i].classList.remove("O");
+				board[i].style.pointerEvents="auto";
+			}
+	}
 }
