@@ -13,5 +13,11 @@ window.onload = function(){
 			}
 			tracker++;
 		});
-	} 
+		board[i].onmouseenter= function(){
+			board[i].classList.add("hover");
+		}
+		board[i].onmouseleave=function(){
+			board[i].classList.remove("hover");
+		}	
+	}
 }
